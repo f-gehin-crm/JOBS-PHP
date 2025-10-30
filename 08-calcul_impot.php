@@ -1,37 +1,8 @@
 <?php
 
-
-
-
-
-
-define("TAUX1", 0.09); // Taux pour les revenus inférieurs à 15 000 euros
-define("TAUX2", 0.14); // Taux pour les revenus supérieurs à 15 000 euros
-define("SEUIL", 15000); // Seuil de revenu  
-class Contribuable {
-    private $nom;
-    private $revenuAnnuel;
-
-    public function __construct($nom, $revenuAnnuel) {
-        $this->nom = $nom;
-        $this->revenuAnnuel = $revenuAnnuel;
-    }
-
-    public function calculImpot() {
-        if ($this->revenuAnnuel <= SEUIL) {
-            return $this->revenuAnnuel * TAUX1;
-        } else {
-            $impotSeuil = SEUIL * TAUX1;
-            $impotSup = ($this->revenuAnnuel - SEUIL) * TAUX2;
-            return $impotSeuil + $impotSup;
-        }
-    }
-
-    public function getNom() {
-        return $this->nom;
-    }
-}
 // Exemple d'utilisation
+
+require "model/Contribuable.php";
 
 $item1 = readline("Entrez votre nom : ");
 $item2 = (float)readline("Entrez votre revenu annuel en euros : ");
@@ -52,5 +23,3 @@ echo "Mr " . $contribuable->getNom() . ", votre impôt est
  * @return DateTime la date actuelle
  * @return DateTime la date après ajout ou soustraction de jours
  */
-
-?>
